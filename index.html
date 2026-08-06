@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 차, 최저가로 비교해보세요 | 카테랑 무료 견적비교</title>
+<!-- 카카오톡/SNS 공유 미리보기용 태그 -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="내 차, 최저가로 비교해보세요">
+<meta property="og:description" content="40여개 렌트·리스사 실시간 비교로 내 차 최저가를 확인해보세요. 신청은 1분이면 충분해요.">
+<meta property="og:image" content="https://example.com/kakaoog.png">
+<meta property="og:url" content="https://example.com/">
+<!-- Meta Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'YOUR_PIXEL_ID'); /* TODO: 메타 픽셀 ID로 교체 */
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin
+  href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css" />
+
+<style>
+  :root{
+    --bg: #FFFFFF;
+    --bg-soft: #F7F9FC;
+    --ink: #191F28;
+    --ink-sub: #6B7684;
+    --ink-faint: #A6AEB8;
+    --line: #EBEEF2;
+    --blue: #3182F6;
+    --blue-deep: #1B64DA;
+    --blue-tint: #EBF2FF;
+    --mint: #00D6A3;
+    --mint-tint: #E6FBF5;
+    --radius-lg: 28px;
+    --radius-md: 20px;
+    --radius-sm: 14px;
+    --max: 480px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Malgun Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+
+  .page{
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-bottom: 110px; /* 하단 고정 버튼 공간 */
+    position: relative;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family: inherit; }
+
+  /* ---------- 상단 바 ---------- */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 20px 24px 0;
+  }
+  .brand{
+    display:flex; align-items:center;
+    font-size: 17px; font-weight: 800; letter-spacing: -0.02em;
+  }
+  .brand img{ height: 26px; width:auto; display:block; }
+  .brand span{ color: var(--blue); }
+  .topbar-badge{
+    font-size: 12px; font-weight: 600; color: var(--ink-sub);
+    background: var(--bg-soft); padding: 6px 12px; border-radius: 100px;
+  }
+
+  /* ---------- 히어로 ---------- */
+  .hero{ padding: 28px 24px 8px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size: 13px; font-weight: 700; color: var(--blue-deep);
+    background: var(--blue-tint); padding: 7px 12px; border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:''; width:6px; height:6px; border-radius:50%;
+    background: var(--blue); display:inline-block;
+  }
+  h1{
+    font-size: 32px; line-height: 1.32; font-weight: 800;
+    letter-spacing: -0.03em; margin: 0 0 14px;
+  }
+  .hero p.sub{
+    font-size: 16px; line-height: 1.6; color: var(--ink-sub);
+    margin: 0 0 26px; font-weight: 500;
+  }
+
+  .info-chips{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 28px;
+  }
+  .chip{
+    font-size: 13px; font-weight: 600; color: var(--ink);
+    background: var(--bg-soft); border: 1px solid var(--line);
+    padding: 9px 13px; border-radius: 100px;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  .cta-primary{
+    display:block; width:100%; text-align:center;
+    background: var(--blue); color:#fff;
+    font-size: 17px; font-weight: 700;
+    padding: 18px 0; border-radius: var(--radius-sm);
+    border:none; cursor:pointer;
+    box-shadow: 0 10px 24px -8px rgba(49,130,246,0.55);
+  }
+  .cta-caption{
+    text-align:center; font-size:12.5px; color: var(--ink-faint);
+    margin-top: 10px; font-weight: 500;
+  }
+
+  /* ---------- 시그니처: 견적비교 카드 목업 ---------- */
+  .report-mock{
+    margin: 32px 0 6px;
+    background: linear-gradient(180deg, #14181F 0%, #1F2530 100%);
+    border-radius: var(--radius-lg);
+    padding: 26px 22px 22px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-mock::after{
+    content:'';
+    position:absolute; right:-40px; top:-40px;
+    width:160px; height:160px; border-radius:50%;
+    background: radial-gradient(circle, rgba(49,130,246,0.35), transparent 70%);
+  }
+  .report-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom: 22px; position:relative;
+  }
+  .report-label{ font-size:12px; color:#8B94A3; font-weight:600; margin-bottom:4px; }
+  .report-name{ font-size:15px; font-weight:700; }
+
+  .score-row{
+    display:flex; align-items:baseline; gap:8px; margin-bottom:20px; position:relative;
+  }
+  .score-num{ font-size:38px; font-weight:800; font-variant-numeric: tabular-nums; letter-spacing:-0.02em; }
+  .score-label{ font-size:13px; color:#B9C0CC; font-weight:600; padding-bottom:5px; }
+
+  .bars{ display:flex; flex-direction:column; gap:14px; position:relative; }
+  .bar-head{
+    display:flex; justify-content:space-between; font-size:12.5px;
+    font-weight:600; color:#C7CDD6; margin-bottom:6px;
+  }
+  .bar-head b{ color:#fff; font-weight:700; }
+  .bar-sub{ font-size:11px; color:#7C8494; }
+  .bar-track{
+    height:6px; border-radius:100px; background: rgba(255,255,255,0.12);
+    overflow:hidden;
+  }
+  .bar-fill{ height:100%; border-radius:100px; background: var(--blue); }
+  .bar-fill.mint{ background: var(--mint); }
+
+  /* ---------- 신뢰 스탯 ---------- */
+  .trust-row{
+    display:flex; gap:10px; padding: 0 24px; margin-top: 6px;
+  }
+  .trust-card{
+    flex:1; background: var(--mint-tint); border-radius: var(--radius-sm);
+    padding: 16px 10px; text-align:center;
+  }
+  .trust-num{ font-size:19px; font-weight:800; color:#06997A; font-variant-numeric: tabular-nums; }
+  .trust-label{ font-size:11px; color:#3D8E7C; font-weight:600; margin-top:3px; }
+
+  /* ---------- 섹션 공통 ---------- */
+  .section{ padding: 52px 24px 8px; }
+  .section-head{ margin-bottom: 22px; }
+  .kicker{
+    font-size: 13px; font-weight: 700; color: var(--blue);
+    margin-bottom: 8px; display:block;
+  }
+  h2{
+    font-size: 22px; font-weight: 800; letter-spacing:-0.02em;
+    line-height:1.4; margin:0;
+  }
+  .section p.desc{
+    font-size: 14.5px; color: var(--ink-sub); margin-top:8px; line-height:1.6;
+  }
+
+  /* ---------- 타겟 리스트 ---------- */
+  .target-list{ display:flex; flex-direction:column; gap:2px; }
+  .target-item{
+    display:flex; align-items:center; gap:14px;
+    padding: 16px 4px; border-bottom: 1px solid var(--line);
+    font-size: 15px; font-weight: 600;
+  }
+  .target-item:last-child{ border-bottom:none; }
+  .target-dot{
+    width:34px; height:34px; min-width:34px; border-radius: 10px;
+    background: var(--blue-tint); color: var(--blue-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+  }
+
+  /* ---------- 영상 ---------- */
+  .video-wrap{
+    position:relative; width:100%; aspect-ratio:16/9;
+    border-radius: var(--radius-md); overflow:hidden;
+    box-shadow: 0 12px 28px -12px rgba(0,0,0,0.25);
+  }
+  .video-wrap iframe{ width:100%; height:100%; border:none; }
+
+  /* ---------- 진행 과정 ---------- */
+  .process{ position:relative; padding-left: 6px; }
+  .process-item{
+    display:flex; gap:16px; position:relative; padding-bottom: 28px;
+  }
+  .process-item:last-child{ padding-bottom:0; }
+  .process-item::before{
+    content:''; position:absolute; left:15px; top:34px; bottom:0;
+    width:1.5px; background: var(--line);
+  }
+  .process-item:last-child::before{ display:none; }
+  .process-num{
+    width:32px; height:32px; min-width:32px; border-radius:50%;
+    background: var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:700; z-index:1;
+  }
+  .process-item.active .process-num{ background: var(--blue); }
+  .process-body{ padding-top:4px; }
+  .process-title{ font-size:15px; font-weight:700; margin-bottom:3px; }
+  .process-desc{ font-size:13px; color: var(--ink-sub); line-height:1.5; }
+
+  /* ---------- 안내 문구 ---------- */
+  .notice{
+    background: var(--bg-soft); border-radius: var(--radius-sm);
+    padding: 16px 16px; font-size: 12.5px; color: var(--ink-sub);
+    line-height: 1.6; border: 1px solid var(--line);
+  }
+
+  /* ---------- 신청 폼 영역 ---------- */
+  .form-wrap{
+    background: var(--bg-soft); border-radius: var(--radius-lg);
+    padding: 24px 20px; border: 1px solid var(--line);
+  }
+  .form-wrap h3{
+    font-size: 18px; font-weight:800; margin:0 0 6px;
+  }
+  .form-wrap p{
+    font-size: 13.5px; color: var(--ink-sub); margin:0 0 18px; line-height:1.5;
+  }
+
+  .field{ margin-bottom: 14px; }
+  .field label{
+    display:block; font-size:12.5px; font-weight:700;
+    color: var(--ink); margin-bottom:7px;
+  }
+  .field input[type="text"],
+  .field input[type="tel"]{
+    width:100%; padding: 13px 14px; font-size:14.5px;
+    font-family: inherit; color: var(--ink);
+    background:#fff; border:1.5px solid var(--line);
+    border-radius: var(--radius-sm); outline:none;
+    transition: border-color .15s ease;
+    -webkit-appearance:none; appearance:none;
+  }
+  .field input:focus{ border-color: var(--blue); }
+
+  .consent{
+    display:flex; align-items:flex-start; gap:10px;
+    padding: 12px 2px; font-size: 12.5px; color: var(--ink-sub);
+    line-height: 1.5;
+  }
+  .consent input{ margin-top:2px; width:16px; height:16px; accent-color: var(--blue); flex-shrink:0; }
+  .consent b{ color: var(--ink); font-weight:700; }
+
+  .submit-btn{
+    display:block; width:100%; text-align:center;
+    background: var(--blue); color:#fff;
+    font-size: 16px; font-weight: 700;
+    padding: 16px 0; border-radius: var(--radius-sm);
+    border:none; cursor:pointer; margin-top: 8px;
+  }
+  .submit-btn:disabled{ background: var(--ink-faint); cursor:not-allowed; }
+
+  .form-msg{
+    font-size:12.5px; text-align:center; margin-top:12px; font-weight:600;
+    display:none;
+  }
+  .form-msg.error{ color:#E0432B; display:block; }
+
+  .success-panel{
+    display:none; text-align:center; padding: 20px 8px;
+  }
+  .success-panel .check{
+    width:52px; height:52px; border-radius:50%;
+    background: var(--mint-tint); color:#06997A;
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px; margin: 0 auto 16px;
+  }
+  .success-panel h4{ font-size:16px; font-weight:800; margin:0 0 6px; }
+  .success-panel p{ font-size:13px; color: var(--ink-sub); margin:0; }
+
+  /* ---------- 하단 고정 CTA ---------- */
+  .sticky-cta{
+    position: fixed; left:0; right:0; bottom:0;
+    max-width: var(--max); margin:0 auto;
+    padding: 14px 20px calc(14px + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+    z-index: 50;
+  }
+
+  footer{
+    padding: 40px 24px 24px; text-align:center;
+  }
+  footer .foot-brand{ font-size:13px; font-weight:700; color: var(--ink-sub); margin-bottom:6px; }
+  footer .foot-meta{ font-size:11.5px; color: var(--ink-faint); line-height:1.6; }
+
+  /* ---------- 스크롤 리빌 ---------- */
+  .reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* 키보드 포커스 표시 */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--blue); outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="topbar">
+    <div class="brand"><img src="logo.png" alt="카테랑"></div>
+    <div class="topbar-badge">40여개사 실시간 비교</div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow">전차종 무료 견적비교</span>
+    <h1>이 차,<br>더 싸게 탈 수 있어요</h1>
+    <p class="sub">40여개 렌트·리스사 실시간 비교로<br>내 차 최저가를 확인해보세요.</p>
+
+    <div class="info-chips">
+      <span class="chip">💰 비교견적 무료</span>
+      <span class="chip">⏱ 신청 1분</span>
+      <span class="chip">📞 전국 상담 가능</span>
+    </div>
+
+    <a href="#apply" class="cta-primary">무료 견적 비교 신청하기</a>
+    <p class="cta-caption">신청 후 담당 컨설턴트가 순차적으로 연락드려요</p>
+
+    <!-- 시그니처: 견적비교 목업 -->
+    <div class="report-mock reveal">
+      <div class="report-top">
+        <div>
+          <div class="report-label">LIVE QUOTE COMPARE</div>
+          <div class="report-name">이번주 인기 차종 비교</div>
+        </div>
+      </div>
+
+      <div class="score-row">
+        <span class="score-num">최대 38%</span>
+        <span class="score-label">평균 대비 절약</span>
+      </div>
+
+      <div class="bars">
+        <div class="bar-item">
+          <div class="bar-head"><b>쏘렌토 하이브리드</b><span>32개사 비교</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head"><b>그랜저</b><span>28개사 비교</span></div>
+          <div class="bar-track"><div class="bar-fill mint" style="width:68%"></div></div>
+        </div>
+        <div class="bar-item">
+          <div class="bar-head"><b>아반떼 CN7</b><span>35개사 비교</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:74%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 신뢰 스탯 -->
+  <div class="trust-row reveal">
+    <div class="trust-card">
+      <div class="trust-num">40+</div>
+      <div class="trust-label">비교 제휴사</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-num">10년</div>
+      <div class="trust-label">컨설팅 노하우</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-num">무료</div>
+      <div class="trust-label">비교 상담</div>
+    </div>
+  </div>
+
+  <!-- 타겟 -->
+  <section class="section reveal">
+    <div class="section-head">
+      <span class="kicker">이런 분께 추천해요</span>
+      <h2>혹시, 나도 해당될까요?</h2>
+    </div>
+    <div class="target-list">
+      <div class="target-item"><span class="target-dot">🚗</span>신차 구매를 고민 중인 분</div>
+      <div class="target-item"><span class="target-dot">💸</span>초기비용 부담을 줄이고 싶은 분</div>
+      <div class="target-item"><span class="target-dot">🏃</span>여러 곳 발품 팔기 귀찮은 분</div>
+      <div class="target-item"><span class="target-dot">🤔</span>렌트·리스 차이가 헷갈리는 분</div>
+      <div class="target-item"><span class="target-dot">🏢</span>법인·사업자 차량이 필요한 분</div>
+      <div class="target-item"><span class="target-dot">📊</span>정확한 견적을 비교하고 싶은 분</div>
+    </div>
+  </section>
+
+  <!-- 영상 -->
+  <section class="section reveal">
+    <div class="section-head">
+      <span class="kicker">짧은 영상으로 먼저 확인하세요</span>
+      <h2>1분이면 이해되는 견적비교</h2>
+    </div>
+    <div class="video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/f8Z3iD5-aNo"
+        allowfullscreen
+        allow="autoplay; encrypted-media">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- 진행 과정 -->
+  <section class="section reveal">
+    <div class="section-head">
+      <span class="kicker">진행 과정</span>
+      <h2>신청부터 계약까지, 3단계</h2>
+    </div>
+    <div class="process">
+      <div class="process-item active">
+        <div class="process-num">1</div>
+        <div class="process-body">
+          <div class="process-title">견적 신청</div>
+          <div class="process-desc">이름 · 연락처 · 희망차종만 남겨주세요</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">2</div>
+        <div class="process-body">
+          <div class="process-title">비교 상담 연락</div>
+          <div class="process-desc">담당 컨설턴트가 40여개사 견적을 비교해 안내해요</div>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">3</div>
+        <div class="process-body">
+          <div class="process-title">최저가 확정 · 계약</div>
+          <div class="process-desc">원하는 조건을 확인하고 계약을 진행해요</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 안내 문구 -->
+  <section class="section reveal">
+    <div class="notice">
+      ℹ️ 본 서비스는 렌트·리스 상품 비교 및 상담 연결을 위한 서비스이며, 특정 금융·렌트 상품 가입을 보장하지 않습니다. 실제 조건은 제휴사 및 심사 결과에 따라 달라질 수 있습니다.
+    </div>
+  </section>
+
+  <!-- 신청 폼 -->
+  <section class="section reveal" id="apply">
+    <div class="section-head">
+      <span class="kicker">무료 견적 비교 신청</span>
+      <h2>지금 바로 신청해보세요</h2>
+      <p class="desc">이름 · 연락처 · 희망차종만 남겨주시면 담당 컨설턴트가 순차적으로 연락드립니다.</p>
+    </div>
+
+    <div class="form-wrap">
+      <div id="form-view">
+        <h3>무료 견적비교 신청서</h3>
+        <p>아래 정보만 남겨주시면 담당자가 순차적으로 연락드립니다.</p>
+
+        <form id="apply-form">
+          <div class="field">
+            <label>이름</label>
+            <input type="text" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label>연락처</label>
+            <input type="tel" name="phone" placeholder="010-0000-0000" required autocomplete="tel">
+          </div>
+          <div class="field">
+            <label>희망차종</label>
+            <input type="text" name="car_model" placeholder="예: 쏘렌토 하이브리드" required>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" name="consent_privacy" required>
+            <span><b>[필수]</b> 개인정보 수집·이용에 동의합니다. (견적 상담 및 안내 목적)</span>
+          </label>
+
+          <input type="hidden" name="utm_source">
+          <input type="hidden" name="utm_campaign">
+          <input type="hidden" name="utm_content">
+          <input type="hidden" name="submitted_at">
+
+          <button type="submit" class="submit-btn">무료 견적 비교 신청하기</button>
+          <p class="form-msg" id="form-error"></p>
+        </form>
+      </div>
+
+      <div id="success-view" class="success-panel">
+        <div class="check">✓</div>
+        <h4>신청이 접수되었어요</h4>
+        <p>남겨주신 연락처로 담당자가<br>순차적으로 연락드릴게요.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-brand">카테랑</div>
+    <div class="foot-meta">
+      본 서비스는 렌트·리스 비교 상담 서비스이며 특정 상품 가입을 보장하지 않습니다.<br>
+      <!-- TODO: 사업자등록번호 / 대표자명 / 주소 / 고객센터 번호 추가 -->
+    </div>
+  </footer>
+
+</div>
+
+<!-- 하단 고정 CTA -->
+<div class="sticky-cta">
+  <a href="#apply" class="cta-primary">무료 견적 비교 신청하기</a>
+</div>
+
+<script>
+  // 스크롤 리빌
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(el=>io.observe(el));
+
+  // 히어로 목업 카드는 로드 즉시 노출
+  document.querySelector('.report-mock').classList.add('in');
+
+  // ============================================================
+  // 신청 폼 → Google Apps Script → Google Sheets 저장
+  // 아래 APPS_SCRIPT_URL 에 배포된 웹앱 URL을 넣어주세요.
+  // (같이 드린 apps-script.gs 파일 참고)
+  // ============================================================
+  const APPS_SCRIPT_URL = "여기에_배포된_웹앱_URL을_붙여넣으세요";
+
+  // URL의 UTM 파라미터를 숨은 필드에 저장
+  const params = new URLSearchParams(window.location.search);
+  const form = document.getElementById('apply-form');
+  form.utm_source.value = params.get('utm_source') || '';
+  form.utm_campaign.value = params.get('utm_campaign') || '';
+  form.utm_content.value = params.get('utm_content') || '';
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = form.querySelector('.submit-btn');
+    const errorEl = document.getElementById('form-error');
+    errorEl.style.display = 'none';
+
+    if (APPS_SCRIPT_URL.includes('여기에')) {
+      errorEl.textContent = 'Apps Script URL이 아직 연결되지 않았습니다. (개발자용 안내)';
+      errorEl.classList.add('error');
+      return;
+    }
+
+    form.submitted_at.value = new Date().toISOString();
+    btn.disabled = true;
+    btn.textContent = '신청 처리 중...';
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.consent_privacy = form.consent_privacy.checked ? 'Y' : 'N';
+
+    try {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      });
+
+      document.getElementById('form-view').style.display = 'none';
+      document.getElementById('success-view').style.display = 'block';
+
+      // Meta Pixel Lead 이벤트
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+
+    } catch (err) {
+      errorEl.textContent = '신청 중 오류가 발생했어요. 다시 시도해주세요.';
+      errorEl.classList.add('error');
+      btn.disabled = false;
+      btn.textContent = '무료 견적 비교 신청하기';
+    }
+  });
+</script>
+
+</body>
+</html>
